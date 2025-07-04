@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherCast - Modern Weather App</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="app-title">Weather<span class="accent">Cast</span></h1>
+            <p class="app-subtitle">Your beautiful weather companion</p>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-container">
+            <form class="search-form" id="searchForm">
+                <div class="search-wrapper">
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Search for a city..."
+                        class="search-input"
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="search-btn" id="searchBtn">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <p>Loading weather data...</p>
+        </div>
+
+        <!-- Main Weather Card -->
+        <div class="weather-card" id="weatherCard">
+            <div class="weather-main">
+                <!-- Current Weather -->
+                <div class="current-weather">
+                    <div class="location-info">
+                        <div class="location">
+                            <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span id="locationName">New York</span>
+                        </div>
+                        <div class="datetime">
+                            <div class="time">
+                                <svg class="time-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12,6 12,12 16,14"></polyline>
+                                </svg>
+                                <span id="currentTime">12:00 PM</span>
+                            </div>
+                            <div class="date">
+                                <svg class="date-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span id="currentDate">Monday, January 1, 2024</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="temperature-display">
+                        <div class="weather-icon" id="mainWeatherIcon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                        </div>
+                        <div class="temp-info">
+                            <div class="temperature" id="temperature">22°</div>
+                            <div class="feels-like">Feels like <span id="feelsLike">25°</span></div>
+                        </div>
+                    </div>
+
+                    <div class="weather-condition">
+                        <div class="condition" id="weatherCondition">Partly Cloudy</div>
+                        <div class="sun-times">
+                            <span>Sunrise: <span id="sunrise">06:30</span></span>
+                            <span>Sunset: <span id="sunset">19:45</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Stats -->
+                <div class="weather-stats">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                            </svg>
+                            <span>Wind Speed</span>
+                        </div>
+                        <div class="stat-value" id="windSpeed">12 km/h</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <span>Humidity</span>
+                        </div>
+                        <div class="stat-value" id="humidity">65%</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <span>Visibility</span>
+                        </div>
+                        <div class="stat-value" id="visibility">10 km</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span>Pressure</span>
+                        </div>
+                        <div class="stat-value" id="pressure">1013 hPa</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5-Day Forecast -->
+        <div class="forecast-card" id="forecastCard">
+            <h3 class="forecast-title">5-Day Forecast</h3>
+            <div class="forecast-grid" id="forecastGrid">
+                <!-- Forecast items will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with ❤️ for weather enthusiasts</p>
+        </footer>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
